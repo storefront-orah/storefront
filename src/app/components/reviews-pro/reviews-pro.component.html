@@ -1,0 +1,65 @@
+<section id="reviews" aria-labelledby="reviews-pro-heading" class="reviews-pro">
+  <div class="reviews-pro__inner">
+    <header class="reviews-pro__header">
+      <h2 id="reviews-pro-heading" class="reviews-pro__title">Reviews</h2>
+      <div class="reviews-pro__badge">
+        <img src="/gold.svg" alt="Gold authenticity" width="56" height="56" loading="lazy" decoding="async" />
+      </div>
+      <div class="reviews-pro__summary">
+        <div class="reviews-pro__rating-row">
+          <span class="reviews-pro__score">{{ avgRating }}</span>
+          <div
+            role="img"
+            class="reviews-pro__stars reviews-pro__stars--summary"
+            [attr.aria-label]="ariaSummaryStars()"
+          >
+            @for (fill of starFillPercents(avgRating); track $index) {
+              <span aria-hidden="true" class="reviews-pro__starcell">
+                <span class="reviews-pro__star reviews-pro__star--empty">★</span>
+                <span class="reviews-pro__star reviews-pro__star--fill" [style.width.%]="fill">★</span>
+              </span>
+            }
+          </div>
+        </div>
+        <p class="reviews-pro__meta">Based on {{ reviewCount }} reviews*</p>
+      </div>
+    </header>
+
+    <hr class="reviews-pro__rule" />
+
+    <ul class="reviews-pro__list">
+      @for (item of displayReviews(); track item.author + item.date) {
+        <li class="reviews-pro__item">
+          <div class="reviews-pro__author-col">
+            <strong class="reviews-pro__author">{{ item.author }}</strong>
+            <span class="reviews-pro__verified">Verified purchase</span>
+            <span class="reviews-pro__date">{{ item.date }}</span>
+          </div>
+          <div class="reviews-pro__body-col">
+            <div class="reviews-pro__row-head">
+              <div
+                role="img"
+                class="reviews-pro__stars"
+                [attr.aria-label]="ariaReviewStars(item.rating)"
+              >
+                @for (fill of starFillPercents(item.rating); track $index) {
+                  <span aria-hidden="true" class="reviews-pro__starcell">
+                    <span class="reviews-pro__star reviews-pro__star--empty">★</span>
+                    <span class="reviews-pro__star reviews-pro__star--fill" [style.width.%]="fill">★</span>
+                  </span>
+                }
+              </div>
+            </div>
+            <p class="reviews-pro__text">{{ item.text }}</p>
+          </div>
+        </li>
+      }
+    </ul>
+
+    @if (showLoadMore()) {
+      <div class="reviews-pro__loadmore-wrap">
+        <button type="button" class="btn reviews-pro__loadmore" (click)="loadMore()">Load more</button>
+      </div>
+    }
+  </div>
+</section>

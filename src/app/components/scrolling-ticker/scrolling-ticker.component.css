@@ -1,0 +1,146 @@
+:host {
+  display: block;
+}
+
+.ticker {
+  position: relative;
+  overflow: hidden;
+}
+
+.ticker__viewport {
+  overflow: hidden;
+}
+
+.ticker__track {
+  display: flex;
+  width: max-content;
+  animation: ticker-marquee 48s linear infinite;
+}
+
+.ticker__track--static {
+  animation: none;
+  width: 100%;
+  max-width: 100%;
+  justify-content: center;
+}
+
+.ticker--static .ticker__viewport {
+  display: flex;
+  justify-content: center;
+}
+
+.ticker--static .ticker__list {
+  justify-content: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker__track {
+    animation: none;
+  }
+}
+
+@keyframes ticker-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker__list {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  margin: 0;
+  padding: 0.65rem 1.25rem;
+  list-style: none;
+  flex-shrink: 0;
+}
+
+.ticker__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  white-space: nowrap;
+}
+
+.ticker__icon {
+  display: flex;
+  width: 1.125rem;
+  height: 1.125rem;
+  flex-shrink: 0;
+}
+
+.ticker__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ticker__label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Light variant — clinical white band */
+.ticker--light {
+  background: var(--clinical-white);
+  border-top: 1px solid var(--ticker-border, var(--tech-silver));
+  border-bottom: 1px solid var(--ticker-border, var(--tech-silver));
+  color: var(--ticker-navy, var(--orah-black));
+}
+
+.ticker--light .ticker__label {
+  color: var(--ticker-navy, var(--orah-black));
+}
+
+.ticker--light .ticker__icon {
+  color: var(--ticker-navy, var(--orah-black));
+}
+
+/* Mid band — focus violet */
+.ticker--blue {
+  background: var(--ticker-blue, var(--focus-violet));
+  border-top: none;
+  border-bottom: none;
+  color: #fff;
+}
+
+.ticker--blue .ticker__label {
+  color: rgba(255, 255, 255, 0.98);
+}
+
+.ticker--blue .ticker__icon {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Promo strip — soft graphite */
+.ticker--promo {
+  background: var(--promo-ticker-bg, var(--soft-graphite));
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+
+.ticker--promo .ticker__label {
+  color: rgba(255, 255, 255, 0.98);
+  text-transform: none;
+  letter-spacing: 0.04em;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.ticker--promo .ticker__icon {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.ticker--promo .ticker__list {
+  gap: 2rem;
+  padding: 0.75rem 1rem;
+}
+
+.ticker--promo:not(.ticker--static) .ticker__track:not(.ticker__track--static) {
+  animation-duration: 56s;
+}

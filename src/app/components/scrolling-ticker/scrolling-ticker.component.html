@@ -1,0 +1,151 @@
+<div
+  class="ticker"
+  [ngClass]="{
+    'ticker--light': variant === 'light',
+    'ticker--blue': variant === 'blue',
+    'ticker--promo': variant === 'promo',
+    'ticker--static': !scroll,
+  }"
+  role="presentation"
+>
+  <div class="ticker__viewport">
+    <div class="ticker__track" [class.ticker__track--static]="!scroll">
+      <ul class="ticker__list">
+        @for (item of items; track $index) {
+          <li class="ticker__item">
+            <span class="ticker__icon" aria-hidden="true">
+              @switch (item.icon) {
+                @case ('fresh') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="9" r="3.5" />
+                    <path d="M6 20c1.5-4 4.5-6 6-6s4.5 2 6 6" stroke-linecap="round" />
+                  </svg>
+                }
+                @case ('zero-sugar') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M7 7l10 10M6 6l12 12" stroke-linecap="round" />
+                    <rect x="5" y="5" width="14" height="14" rx="2" />
+                  </svg>
+                }
+                @case ('no-liquid') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 3l6 9v6a3 3 0 01-3 3H9a3 3 0 01-3-3v-6l6-9z" />
+                    <path d="M4 4l16 16" stroke-linecap="round" />
+                  </svg>
+                }
+                @case ('clock') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 7v6l4 2" stroke-linecap="round" />
+                  </svg>
+                }
+                @case ('pocket') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M4 8h16v12H4V8z" />
+                    <path d="M4 8l2-4h12l2 4" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                }
+                @case ('vitamins') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 4v16M8 8h8M8 16h8" stroke-linecap="round" />
+                  </svg>
+                }
+                @case ('check') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M8 12l2.5 2.5L16 9" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                }
+                @case ('package') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+                    <path d="M21 16V8l-9-5-9 5v8l9 5 9-5z" />
+                    <path d="M3.27 6.96L12 12l8.73-5.04M12 22V12" stroke-linecap="round" />
+                  </svg>
+                }
+                @case ('globe') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="12" r="9" />
+                    <path
+                      d="M2 12h20M12 2a15 15 0 000 20M12 2a15 15 0 010 20"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                }
+              }
+            </span>
+            <span class="ticker__label">{{ item.label }}</span>
+          </li>
+        }
+      </ul>
+      @if (scroll) {
+      <ul class="ticker__list" aria-hidden="true">
+        @for (item of items; track $index) {
+          <li class="ticker__item">
+            <span class="ticker__icon" aria-hidden="true">
+              @switch (item.icon) {
+                @case ('fresh') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="9" r="3.5" />
+                    <path d="M6 20c1.5-4 4.5-6 6-6s4.5 2 6 6" stroke-linecap="round" />
+                  </svg>
+                }
+                @case ('zero-sugar') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M7 7l10 10M6 6l12 12" stroke-linecap="round" />
+                    <rect x="5" y="5" width="14" height="14" rx="2" />
+                  </svg>
+                }
+                @case ('no-liquid') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 3l6 9v6a3 3 0 01-3 3H9a3 3 0 01-3-3v-6l6-9z" />
+                    <path d="M4 4l16 16" stroke-linecap="round" />
+                  </svg>
+                }
+                @case ('clock') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 7v6l4 2" stroke-linecap="round" />
+                  </svg>
+                }
+                @case ('pocket') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M4 8h16v12H4V8z" />
+                    <path d="M4 8l2-4h12l2 4" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                }
+                @case ('vitamins') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 4v16M8 8h8M8 16h8" stroke-linecap="round" />
+                  </svg>
+                }
+                @case ('check') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M8 12l2.5 2.5L16 9" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                }
+                @case ('package') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+                    <path d="M21 16V8l-9-5-9 5v8l9 5 9-5z" />
+                    <path d="M3.27 6.96L12 12l8.73-5.04M12 22V12" stroke-linecap="round" />
+                  </svg>
+                }
+                @case ('globe') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="12" r="9" />
+                    <path
+                      d="M2 12h20M12 2a15 15 0 000 20M12 2a15 15 0 010 20"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                }
+              }
+            </span>
+            <span class="ticker__label">{{ item.label }}</span>
+          </li>
+        }
+      </ul>
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<section
+  id="science"
+  class="formula"
+  [class.formula--energy]="mode() === 'energy'"
+  [class.formula--focus]="mode() === 'focus'"
+  aria-labelledby="formula-heading"
+>
+  <div class="formula__inner">
+    <h2 id="formula-heading" class="formula__title">Our Mile High Formula</h2>
+
+    <div class="formula__mode-bar">
+      <span
+        class="formula__mode-text formula__mode-text--energy"
+        [class.formula__mode-text--active]="mode() === 'energy'"
+        aria-hidden="true"
+      >
+        Energy
+      </span>
+      <button
+        type="button"
+        class="formula__switch"
+        [class.formula__switch--on]="isFocusActive()"
+        role="switch"
+        [attr.aria-checked]="isFocusActive()"
+        aria-label="Formula emphasis: Energy or Focus"
+        (click)="toggleMode()"
+      >
+        <span class="formula__switch-thumb" aria-hidden="true"></span>
+      </button>
+      <span
+        class="formula__mode-text formula__mode-text--focus"
+        [class.formula__mode-text--active]="mode() === 'focus'"
+        aria-hidden="true"
+      >
+        Focus
+      </span>
+    </div>
+
+    <div class="formula__card" id="ingredients">
+      <header class="formula__card-head">
+        <p class="formula__badge">{{ cardBadge() }}</p>
+        <p class="formula__card-desc">{{ cardDescription() }}</p>
+      </header>
+      <div class="formula__strip" tabindex="0">
+        @for (item of visibleIngredients(); track item.name) {
+          <article class="formula-ingredient">
+            <div class="formula-ingredient__photo">
+              <img [src]="item.imageUrl" [alt]="item.imageAlt" width="260" height="160" loading="lazy" />
+            </div>
+            <div class="formula-ingredient__body">
+              <h3 class="formula-ingredient__name">{{ item.name }}</h3>
+              <p class="formula-ingredient__detail">{{ item.detail }}</p>
+              <p class="formula-ingredient__field">
+                <span class="formula-ingredient__label">Found in:</span>
+                {{ item.foundIn }}
+              </p>
+              <p class="formula-ingredient__field">
+                <span class="formula-ingredient__label">Benefits:</span>
+                {{ item.benefits }}
+              </p>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </div>
+</section>

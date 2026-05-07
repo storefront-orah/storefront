@@ -1,0 +1,52 @@
+<section class="testimonials" aria-labelledby="testimonials-heading">
+  <div class="testimonials__inner">
+    <header class="testimonials__intro">
+      <h2 id="testimonials-heading" class="testimonials__title">Real People. Real Results</h2>
+      <p class="testimonials__subtitle">
+        Hear from Energy Strips users everywhere—travel days, late shifts, and everyday boosts.
+      </p>
+    </header>
+
+    <div class="testimonials__filters" role="tablist" aria-label="Filter testimonials">
+      @for (f of filters; track f.key) {
+        <button
+          type="button"
+          role="tab"
+          class="testimonials__filter"
+          [class.testimonials__filter--active]="isActive(f.key)"
+          [attr.aria-selected]="isActive(f.key)"
+          (click)="setFilter(f.key)"
+        >
+          {{ f.label }}
+        </button>
+      }
+    </div>
+
+    <div class="testimonials__quotes" role="tabpanel">
+      @for (q of filteredQuotes(); track q.filter + q.headline) {
+        <article class="testimonials-quote">
+          <div class="testimonials-quote__stars" aria-hidden="true">
+            @for (_ of [1, 2, 3, 4, 5]; track $index) {
+              <span class="testimonials-quote__star">★</span>
+            }
+          </div>
+          <h3 class="testimonials-quote__headline">{{ q.headline }}</h3>
+          <p class="testimonials-quote__body">{{ q.body }}</p>
+          <p class="testimonials-quote__attr">— Energy Strips user</p>
+        </article>
+      }
+    </div>
+
+    <div class="testimonials__videos" tabindex="0">
+      @for (v of videos; track v.id) {
+        <button type="button" class="testimonials-video" [attr.aria-label]="playLabel(v)">
+          <span class="testimonials-video__tag">{{ v.label }}</span>
+          <span class="testimonials-video__play" aria-hidden="true">
+            <span class="testimonials-video__play-circle"></span>
+            <span class="testimonials-video__play-icon"></span>
+          </span>
+        </button>
+      }
+    </div>
+  </div>
+</section>

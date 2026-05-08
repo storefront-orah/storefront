@@ -172,35 +172,46 @@
           <div class="product-pdp__step">
             <div class="product-pdp__step-head">
               <span class="product-pdp__step-num">1</span>
-              <h2 class="product-pdp__step-title">Select flavor</h2>
+              <h2 class="product-pdp__step-title">Choose Effect</h2>
             </div>
-            <div class="product-pdp__cards product-pdp__cards--2">
+            <div class="product-pdp__cards product-pdp__cards--3">
               <label class="product-pdp__pick">
-                <input type="radio" name="pdp-flavor" value="peppermint" checked />
+                <input
+                  type="radio"
+                  name="pdp-effect"
+                  value="energy"
+                  [checked]="pdpEffect() === 'energy'"
+                  (change)="setPdpEffect('energy')"
+                />
                 <span class="product-pdp__pick-face">
-                  <span class="product-pdp__pick-icon product-pdp__pick-icon--mint-b" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true">
-                      <path
-                        d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3c.43.88.94 1.71 1.49 2.3L10 22c2-8 5-12 7-14zm-6 1c.67.65 1.24 1.37 1.72 2.12L14 9c-1.5.5-2.5 0-3 0z"
-                      />
-                    </svg>
-                  </span>
-                  <span class="product-pdp__pick-title">Peppermint</span>
-                  <span class="product-pdp__pick-sub">fresh &amp; icy</span>
+                  <span class="product-pdp__bundle-label">Energy</span>
+                  <span class="product-pdp__bundle-detail">Jitter free energy</span>
                 </span>
               </label>
               <label class="product-pdp__pick">
-                <input type="radio" name="pdp-flavor" value="spearmint" />
+                <input
+                  type="radio"
+                  name="pdp-effect"
+                  value="focus"
+                  [checked]="pdpEffect() === 'focus'"
+                  (change)="setPdpEffect('focus')"
+                />
                 <span class="product-pdp__pick-face">
-                  <span class="product-pdp__pick-icon product-pdp__pick-icon--mint-g" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true">
-                      <path
-                        d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3c.43.88.94 1.71 1.49 2.3L10 22c2-8 5-12 7-14zm-6 1c.67.65 1.24 1.37 1.72 2.12L14 9c-1.5.5-2.5 0-3 0z"
-                      />
-                    </svg>
-                  </span>
-                  <span class="product-pdp__pick-title">Spearmint</span>
-                  <span class="product-pdp__pick-sub">smooth &amp; sweet</span>
+                  <span class="product-pdp__bundle-label">Focus</span>
+                  <span class="product-pdp__bundle-detail">Focus on demand</span>
+                </span>
+              </label>
+              <label class="product-pdp__pick">
+                <input
+                  type="radio"
+                  name="pdp-effect"
+                  value="stack"
+                  [checked]="pdpEffect() === 'stack'"
+                  (change)="setPdpEffect('stack')"
+                />
+                <span class="product-pdp__pick-face">
+                  <span class="product-pdp__bundle-label">Stack</span>
+                  <span class="product-pdp__bundle-detail">All the benefits of Energy &amp; Focus</span>
                 </span>
               </label>
             </div>
@@ -209,30 +220,39 @@
           <div class="product-pdp__step">
             <div class="product-pdp__step-head">
               <span class="product-pdp__step-num">2</span>
-              <h2 class="product-pdp__step-title">Choose Effect</h2>
+              <h2 id="product-pdp-flavor-heading" class="product-pdp__step-title">Flavor</h2>
             </div>
-            <div class="product-pdp__cards product-pdp__cards--3">
-              <label class="product-pdp__pick">
-                <input type="radio" name="pdp-effect" value="variety" checked />
+            <div
+              class="product-pdp__cards product-pdp__cards--flavor-single"
+              role="group"
+              aria-labelledby="product-pdp-flavor-heading"
+            >
+              <div
+                class="product-pdp__pick product-pdp__pick--locked product-pdp__pick--selected"
+                role="status"
+                aria-live="polite"
+              >
                 <span class="product-pdp__pick-face">
-                  <span class="product-pdp__bundle-label">Variety</span>
-                  <span class="product-pdp__bundle-detail">Balanced energy &amp; focus</span>
+                  @switch (pdpEffect()) {
+                    @case ('energy') {
+                      <span class="product-pdp__pick-emoji" aria-hidden="true">🌿</span>
+                      <span class="product-pdp__pick-title">Spearmint</span>
+                    }
+                    @case ('focus') {
+                      <span class="product-pdp__pick-emoji" aria-hidden="true">🍋</span>
+                      <span class="product-pdp__pick-title">Lemon</span>
+                    }
+                    @case ('stack') {
+                      <span class="product-pdp__pick-emojis" aria-hidden="true">
+                        <span class="product-pdp__pick-emoji">🍋</span>
+                        <span class="product-pdp__pick-emoji-plus">+</span>
+                        <span class="product-pdp__pick-emoji">🌿</span>
+                      </span>
+                      <span class="product-pdp__pick-title">Lemon &amp; Spearmint</span>
+                    }
+                  }
                 </span>
-              </label>
-              <label class="product-pdp__pick">
-                <input type="radio" name="pdp-effect" value="energy" />
-                <span class="product-pdp__pick-face">
-                  <span class="product-pdp__bundle-label">Energy</span>
-                  <span class="product-pdp__bundle-detail">Maximum lift &amp; drive</span>
-                </span>
-              </label>
-              <label class="product-pdp__pick">
-                <input type="radio" name="pdp-effect" value="focus" />
-                <span class="product-pdp__pick-face">
-                  <span class="product-pdp__bundle-label">Focus</span>
-                  <span class="product-pdp__bundle-detail">Calm, clear concentration</span>
-                </span>
-              </label>
+              </div>
             </div>
           </div>
 
@@ -242,35 +262,41 @@
               <h2 class="product-pdp__step-title">Purchase</h2>
             </div>
             <div class="product-pdp__purchase-options" role="radiogroup" aria-label="Purchase type">
-              <label class="product-pdp__purchase-card">
+              <div class="product-pdp__purchase-card product-pdp__purchase-card--subscribe">
                 <input
+                  id="pdp-purchase-subscribe"
                   type="radio"
                   name="pdp-purchase"
                   value="subscribe"
+                  class="product-pdp__purchase-radio"
                   [checked]="purchaseMode() === 'subscribe'"
                   (change)="setPurchaseMode('subscribe')"
                 />
-                <div class="product-pdp__subscribe">
-                  <div class="product-pdp__subscribe-main">
-                    <div class="product-pdp__subscribe-title-wrap">
-                      <h3 class="product-pdp__subscribe-title">Subscribe &amp; save</h3>
-                      <span class="product-pdp__pill">Save 30%</span>
+                <label for="pdp-purchase-subscribe" class="product-pdp__purchase-card-body">
+                  <div class="product-pdp__subscribe">
+                    <div class="product-pdp__subscribe-main">
+                      <div class="product-pdp__subscribe-title-wrap">
+                        <h3 class="product-pdp__subscribe-title">Subscribe &amp; save</h3>
+                        <span class="product-pdp__pill">Save 30%</span>
+                      </div>
+                      <ul class="product-pdp__benefits">
+                        <li>FAST &amp; FREE SHIPPING</li>
+                        <li>FREE GIFTS</li>
+                        <li>PAUSE OR CANCEL ANYTIME</li>
+                        <li>DELIVERS EVERY 14 DAYS</li>
+                      </ul>
                     </div>
-                    <ul class="product-pdp__benefits">
-                      <li>FAST &amp; FREE SHIPPING</li>
-                      <li>FREE GIFTS</li>
-                      <li>PAUSE OR CANCEL ANYTIME</li>
-                    </ul>
+                    <div class="product-pdp__price-block">
+                      <p class="product-pdp__price">$17.49</p>
+                      <p class="product-pdp__price-was">$24.99</p>
+                      <p class="product-pdp__per">$0.44 per boost</p>
+                    </div>
                   </div>
-                  <div class="product-pdp__price-block">
-                    <p class="product-pdp__price">$17.49</p>
-                    <p class="product-pdp__price-was">$24.99</p>
-                    <p class="product-pdp__per">$0.44 per boost</p>
-                  </div>
-                </div>
-              </label>
-              <label class="product-pdp__purchase-card">
+                </label>
+              </div>
+              <label class="product-pdp__purchase-card" for="pdp-purchase-onetime">
                 <input
+                  id="pdp-purchase-onetime"
                   type="radio"
                   name="pdp-purchase"
                   value="onetime"

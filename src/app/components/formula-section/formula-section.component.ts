@@ -21,78 +21,77 @@ export class FormulaSectionComponent {
   private readonly energyIngredients: FormulaIngredient[] = [
     {
       name: 'Caffeine',
-      detail: '150 mg — about two small cups of coffee',
-      foundIn: 'Coffee beans & tea leaves',
+      detail:
+        '50 mg, about 1 cup of coffee. Sourced naturally from tea leaves',
+      foundIn: 'Green tea leaves',
       benefits: 'Sharpens concentration, fights fatigue, and pairs cleanly with L-theanine for a smoother feel.',
-      imageUrl:
-        'https://images.unsplash.com/photo-1559056199-641bd08bd746?w=520&q=80',
+      imageUrl: '/pics/coffee.webp',
       imageAlt: 'Roasted coffee beans',
     },
     {
       name: 'L-Theanine',
-      detail: 'Balances stimulation from caffeine',
+      detail: 'Supports the production of serotonin, dopamine, and GABA.',
       foundIn: 'Green tea',
-      benefits: 'Supports calm focus, mood balance, and helps take the edge off jitters.',
-      imageUrl:
-        'https://images.unsplash.com/photo-1564890369479-c89cdf646ddf?w=520&q=80',
+      benefits: 'Regulates mood and behavior, and reduces jitters when paired with caffeine.',
+      imageUrl: '/pics/theanini.webp',
       imageAlt: 'Fresh green tea leaves',
     },
     {
       name: 'Vitamin B12',
-      detail: 'Methylcobalamin — active form your body can use',
-      foundIn: 'Fortified foods & fermentation-derived sources',
-      benefits: 'Supports natural energy metabolism and mental clarity.',
-      imageUrl:
-        'https://images.unsplash.com/photo-1587735243475-221cf8599353?w=520&q=80',
-      imageAlt: 'Vitamin supplement tablets',
+      detail: 'Potent adaptogen with stress-reducing and energizing effects.',
+      foundIn: 'Mushrooms',
+      benefits: 'Reduces stress, modulates cortisol, improves mood.',
+      imageUrl: '/pics/b12.webp',
+      imageAlt: 'Mushrooms',
     },
     {
-      name: "Lion's mane",
-      detail: 'Traditionally used nootropic mushroom extract',
-      foundIn: 'Hericium erinaceus',
+      name: 'Ginseng',
+      detail: 'Traditionally used adaptogenic root extract.',
+      foundIn: 'Red Korean ginseng',
       benefits: 'Supports cognitive clarity and focus alongside your daily routine.',
-      imageUrl:
-        'https://images.unsplash.com/photo-1576678927459-525cf292c987?w=520&q=80',
-      imageAlt: "Lion's mane mushroom",
+      imageUrl: '/pics/ginseng.png',
+      imageAlt: 'Dried Korean red ginseng roots',
     },
   ];
 
   private readonly focusIngredients: FormulaIngredient[] = [
     {
-      name: 'L-Theanine',
-      detail: 'Calm-alert balance for sustained attention',
-      foundIn: 'Green tea',
-      benefits: 'Helps smooth mental stimulation so you can stay on task without feeling wired.',
-      imageUrl:
-        'https://images.unsplash.com/photo-1564890369479-c89cdf646ddf?w=520&q=80',
-      imageAlt: 'Fresh green tea leaves',
-    },
-    {
       name: "Lion's mane",
-      detail: 'Traditionally used nootropic mushroom extract',
+      detail:
+        'Nootropic mushroom traditionally linked to cognitive clarity, memory, and nerve health.',
       foundIn: 'Hericium erinaceus',
-      benefits: 'Often chosen for cognitive clarity and staying sharp through long days.',
-      imageUrl:
-        'https://images.unsplash.com/photo-1576678927459-525cf292c987?w=520&q=80',
+      benefits:
+        'Supports calm focus and mental sharpness when you need to think clearly under pressure.',
+      imageUrl: '/pics/lionmane.webp',
       imageAlt: "Lion's mane mushroom",
     },
     {
-      name: 'Caffeine',
-      detail: '150 mg — clean alertness when you need it',
-      foundIn: 'Coffee beans & tea leaves',
-      benefits: 'Keeps reaction time and attention sharp while theanine smooths the ride.',
-      imageUrl:
-        'https://images.unsplash.com/photo-1559056199-641bd08bd746?w=520&q=80',
-      imageAlt: 'Roasted coffee beans',
+      name: 'Shiitake',
+      detail:
+        'Rich in beta glucans. Used for centuries in East Asian wellness traditions.',
+      foundIn: 'Lentinula edodes',
+      benefits:
+        'Helps reinforce immune resilience and everyday vitality as part of a balanced routine.',
+      imageUrl: '/pics/b12.webp',
+      imageAlt: 'Shiitake mushrooms',
     },
     {
-      name: 'Vitamin B12',
-      detail: 'Methylcobalamin — active form your body can use',
-      foundIn: 'Fortified foods & fermentation-derived sources',
-      benefits: 'Supports brain and nerve health as part of your overall energy picture.',
-      imageUrl:
-        'https://images.unsplash.com/photo-1587735243475-221cf8599353?w=520&q=80',
-      imageAlt: 'Vitamin supplement tablets',
+      name: 'Maitake',
+      detail: 'Prized for metabolic balance and adaptive stress support.',
+      foundIn: 'Grifola frondosa',
+      benefits:
+        'Supports steady energy and stress balance when workload and life stack up.',
+      imageUrl: '/pics/b12.webp',
+      imageAlt: 'Maitake mushroom',
+    },
+    {
+      name: 'Cordyceps',
+      detail: 'Used for stamina and endurance in traditional herbal practice.',
+      foundIn: 'Cordyceps militaris',
+      benefits:
+        'Supports steady output, breathing comfort, and resilient energy on long days without the wired spike.',
+      imageUrl: '/pics/b12.webp',
+      imageAlt: 'Cordyceps militaris',
     },
   ];
 
@@ -104,8 +103,8 @@ export class FormulaSectionComponent {
 
   readonly cardDescription = computed(() =>
     this.mode() === 'energy'
-      ? 'Instant, jitter-free energy and focus in a slim strip—perfect before workouts, travel, or whenever you need a clear lift.'
-      : 'Dial in calm, sustained concentration—ideal for deep work, study sessions, and staying sharp without the crash.',
+      ? '50mg of green coffee caffeine paired with L-theanine for calm focus, B12 for sustain, and Korean Red Ginseng for adaptive support.'
+      : 'A four-mushroom stack of Lion\'s Mane, Shiitake, Maitake, and Cordyceps for clean cognition with zero caffeine',
   );
 
   toggleMode(): void {

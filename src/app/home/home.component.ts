@@ -55,11 +55,18 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
   readonly activeGallerySrc = computed(() => this.galleryThumbUrls[this.activeGalleryIndex()] ?? '/product-pdp-hero.png');
 
+  /** PDP step 1 — energy / focus / stack (drives flavor display) */
+  readonly pdpEffect = signal<'energy' | 'focus' | 'stack'>('energy');
+
   /** PDP step 3 — subscribe vs one-time */
   readonly purchaseMode = signal<'subscribe' | 'onetime'>('subscribe');
 
   selectGallery(index: number): void {
     this.activeGalleryIndex.set(index);
+  }
+
+  setPdpEffect(effect: 'energy' | 'focus' | 'stack'): void {
+    this.pdpEffect.set(effect);
   }
 
   setPurchaseMode(mode: 'subscribe' | 'onetime'): void {

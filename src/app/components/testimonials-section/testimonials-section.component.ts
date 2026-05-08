@@ -1,11 +1,13 @@
 import { Component, computed, signal } from '@angular/core';
 
-export type TestimonialFilter = 'taste' | 'jetLag' | 'sleep' | 'energy' | 'value';
+export type TestimonialFilter = 'taste' | 'energy' | 'focus' | 'work' | 'value';
 
 export interface QuoteReview {
   filter: TestimonialFilter;
   headline: string;
   body: string;
+  /** Attribution line after em dash; defaults to “Energy Strips user” */
+  attr?: string;
 }
 
 export interface VideoSpotlight {
@@ -23,9 +25,9 @@ export interface VideoSpotlight {
 export class TestimonialsSectionComponent {
   readonly filters: { key: TestimonialFilter; label: string }[] = [
     { key: 'taste', label: 'TASTE' },
-    { key: 'jetLag', label: 'JET LAG' },
-    { key: 'sleep', label: 'SLEEP' },
     { key: 'energy', label: 'ENERGY' },
+    { key: 'focus', label: 'FOCUS' },
+    { key: 'work', label: 'WORK' },
     { key: 'value', label: 'VALUE' },
   ];
 
@@ -34,101 +36,116 @@ export class TestimonialsSectionComponent {
   readonly quotes: QuoteReview[] = [
     {
       filter: 'taste',
-      headline: '10/10 would recommend',
+      headline: 'Crisp, not chalky',
       body:
-        'The mint strips taste crisp—not chalky like some energy chews. No weird aftertaste on long flights; they stay in my carry-on.',
+        'The spearmint actually tastes like spearmint, not a vitamin trying to be candy. Dissolves clean. No bitter aftertaste, no fake sweetness.',
+      attr: 'ORAH USER',
     },
     {
       filter: 'taste',
-      headline: 'Actually enjoyable',
+      headline: 'Lemon hits',
       body:
-        'Variety pack lets me switch flavors without guessing. Peppermint before meetings, spearmint after lunch—both feel fresh.',
+        "Bright, not sour. Fresh enough to want one even when I don't need the focus boost. My favorite of any strip I've tried.",
+      attr: 'ORAH USER',
     },
     {
       filter: 'taste',
-      headline: 'Not medicinal',
+      headline: 'They actually pair',
       body:
-        'I was worried they’d taste like vitamins. They dissolve fast and feel more like a mint than a supplement.',
+        "Mint in the morning, lemon mid-afternoon. They don't fight on your tongue the way coffee and chocolate would. Someone thought this through.",
+      attr: 'ORAH USER',
     },
     {
-      filter: 'jetLag',
-      headline: 'Easier redeyes',
+      filter: 'focus',
+      headline: 'No caffeine, real focus',
       body:
-        'I pair a strip with water on landing instead of another espresso loop. Helps me feel human through customs.',
+        "I don't drink caffeine after 1 PM. Focus lets me lock in for late writing sessions without trashing my sleep. The mushroom stack works.",
+      attr: 'ORAH USER',
     },
     {
-      filter: 'jetLag',
-      headline: 'Timezone hops',
+      filter: 'focus',
+      headline: 'Better than nootropics',
       body:
-        'Weekly coast-to-coast—having something pocket-size beats hunting for decent coffee in a new terminal.',
+        "Tried Magic Mind and Lion's Mane gummies. Orah Focus is the only thing that gives me clean concentration without the weirdness.",
+      attr: 'ORAH USER',
     },
     {
-      filter: 'jetLag',
-      headline: 'Carry-on friendly',
+      filter: 'focus',
+      headline: 'Deep work mode',
       body:
-        'No liquids rule means these win every time. Pop one before the gate rush when sleep debt hits.',
+        'One strip before a 2-hour focus block. Phone face down, calendar blocked, Orah on the tongue. Best two hours of my workday.',
+      attr: 'ORAH USER',
     },
     {
-      filter: 'sleep',
-      headline: 'Wind-down ritual',
+      filter: 'work',
+      headline: 'Saves the coffee run',
       body:
-        'On nights when my brain won’t quit, I skip late caffeine and keep strips for earlier in the day—sleep stays sacred.',
+        'Used to walk to the café between meetings. Now I drop a strip and stay at my desk. 15 minutes of momentum saved every time.',
+      attr: 'ORAH USER',
     },
     {
-      filter: 'sleep',
-      headline: 'Red-eye recovery',
+      filter: 'work',
+      headline: 'No 3 PM crash',
       body:
-        'After landing I hydrate hard; strips helped me avoid stacking energy drinks that wreck sleep the next night.',
+        'Energy at 9, Focus at 1. Steady through 6 with no afternoon coffee anxiety. The dip is gone.',
+      attr: 'ORAH USER',
     },
     {
-      filter: 'sleep',
-      headline: 'Less jitter bedtime',
+      filter: 'work',
+      headline: 'Meeting-friendly',
       body:
-        'Because they’re quick-dissolve, I’m not slamming big sugary drinks right before trying to sleep.',
-    },
-    {
-      filter: 'energy',
-      headline: 'Clean lift',
-      body:
-        'Noticeable focus without feeling cracked out—nice before workouts when I don’t want a full pre-workout.',
-    },
-    {
-      filter: 'energy',
-      headline: 'Meeting mode',
-      body:
-        'Back-to-back calls used to mean endless cold brew. One strip mid-afternoon keeps me sharp but steady.',
+        'Cracking a Red Bull in a board meeting kills the vibe. A strip on the tongue is invisible. Focus stays high without the optics.',
+      attr: 'ORAH USER',
     },
     {
       filter: 'energy',
-      headline: 'No spill commute',
+      headline: 'Smooth, not jittery',
       body:
-        'Bike to work + crowded train = no open cups. This fits in the coin pocket of my jeans.',
+        'Clean lift without the heart-racing thing energy drinks do to me. One before a 6 AM padel match and I\'m steady through the whole hour.',
+      attr: 'ORAH USER',
+    },
+    {
+      filter: 'energy',
+      headline: 'Quit Celsius after one box',
+      body:
+        'Was on 2 a day for two years. Switched to Orah three weeks ago. Same alertness, no afternoon dip, no carbonation bloat.',
+      attr: 'ORAH USER',
+    },
+    {
+      filter: 'energy',
+      headline: '50mg is the right number',
+      body:
+        'Most products give you either a useless baby dose or 200mg that wrecks you. 50 paired with L-theanine is the right call for a working day.',
+      attr: 'ORAH USER',
     },
     {
       filter: 'value',
-      headline: 'Subscribe math works',
+      headline: 'Pays for itself week one',
       body:
-        'Per-strip cost beats boutique shots and I actually use the whole pack instead of wasting half a drink.',
+        'I was on $5 coffee plus an afternoon Celsius. $200 a month, easy. One pouch of Orah lasts two weeks at half the price. The math is loud.',
+      attr: 'ORAH USER',
     },
     {
       filter: 'value',
-      headline: 'Travel insurance',
+      headline: 'Bundle is the move',
       body:
-        'Cheap insurance against groggy airport mornings—especially when flight delays stack.',
+        'Buying Energy and Focus together saved me about 20% per strip. I use both daily. Subscription means I never run out and never overpay.',
+      attr: 'ORAH USER',
     },
     {
       filter: 'value',
-      headline: 'Shareable packs',
+      headline: 'No half-flat cans',
       body:
-        'Split an 8-pack with my partner on trips; still cheaper than two fancy lattes a day.',
+        "With energy drinks I'd open one and forget about it, half-warm by the afternoon. With Orah every strip lands. No waste, no toss-outs.",
+      attr: 'ORAH USER',
     },
   ];
 
   readonly videos: VideoSpotlight[] = [
     { id: 'v1', filter: 'taste', label: 'TASTE' },
-    { id: 'v2', filter: 'jetLag', label: 'JET LAG' },
-    { id: 'v3', filter: 'sleep', label: 'SLEEP' },
-    { id: 'v4', filter: 'energy', label: 'ENERGY' },
+    { id: 'v2', filter: 'energy', label: 'ENERGY' },
+    { id: 'v3', filter: 'focus', label: 'FOCUS' },
+    { id: 'v4', filter: 'work', label: 'WORK' },
     { id: 'v5', filter: 'value', label: 'VALUE' },
   ];
 

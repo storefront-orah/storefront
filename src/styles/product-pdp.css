@@ -238,6 +238,29 @@
   grid-template-columns: repeat(2, 1fr);
 }
 
+.product-pdp__cards--flavor-single {
+  grid-template-columns: 1fr;
+}
+
+.product-pdp__cards--flavor-single .product-pdp__pick-face {
+  min-height: 5.25rem;
+  justify-content: center;
+}
+
+.product-pdp__pick-emojis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.product-pdp__pick-emoji-plus {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #64748b;
+}
+
 .product-pdp__cards--2 .product-pdp__pick-face {
   min-height: 5.25rem;
   justify-content: center;
@@ -280,6 +303,39 @@
   box-shadow: 0 0 0 1px var(--pdp-blue);
 }
 
+.product-pdp__pick--locked {
+  cursor: default;
+}
+
+.product-pdp__pick--locked:hover .product-pdp__pick-face {
+  border-color: var(--pdp-border);
+}
+
+.product-pdp__pick--locked.product-pdp__pick--selected:hover .product-pdp__pick-face {
+  border-color: var(--pdp-blue);
+}
+
+.product-pdp__pick--muted:not(.product-pdp__pick--selected) .product-pdp__pick-face {
+  opacity: 0.48;
+  filter: grayscale(0.45);
+  background: #f4f4f5;
+}
+
+.product-pdp__pick--selected .product-pdp__pick-face {
+  border-color: var(--pdp-blue);
+  box-shadow: 0 0 0 1px var(--pdp-blue);
+}
+
+.product-pdp__pick-emoji {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.product-pdp__cards--2 .product-pdp__pick--locked .product-pdp__pick-face {
+  min-height: 5.25rem;
+  justify-content: center;
+}
+
 .product-pdp__pick-icon {
   width: 2rem;
   height: 2rem;
@@ -296,7 +352,7 @@
   color: #16a34a;
 }
 
-.product-pdp__pick-icon--variety {
+.product-pdp__pick-icon--stack {
   background: linear-gradient(135deg, #22c55e 0%, var(--focus-violet) 50%, var(--energy-red) 100%);
   border-radius: 50%;
   width: 1.75rem;
@@ -374,14 +430,19 @@
   cursor: pointer;
 }
 
-.product-pdp__purchase-card input {
+.product-pdp__purchase-card input[type='radio'] {
   position: absolute;
   opacity: 0;
   pointer-events: none;
 }
 
-.product-pdp__purchase-card input:focus {
+.product-pdp__purchase-card input[type='radio']:focus {
   outline: none;
+}
+
+.product-pdp__purchase-card-body {
+  display: block;
+  cursor: pointer;
 }
 
 .product-pdp__purchase-card:hover .product-pdp__subscribe {

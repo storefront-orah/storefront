@@ -219,31 +219,26 @@ a:hover {
   outline-offset: 4px;
 }
 
-@media (max-width: 640px) {
-  .site-header__inner--bar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+@media (max-width: 899px) {
+  .site-header__nav {
+    display: none;
   }
 
   .site-header__bar-spacer {
     display: none;
   }
 
+  .site-header__inner--bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 0;
+    row-gap: 0;
+  }
+
   .logo--brand {
     grid-column: unset;
     justify-self: unset;
-    align-self: center;
-  }
-
-  .site-header__nav {
-    grid-column: unset;
-    justify-self: unset;
-    width: 100%;
-  }
-
-  .site-header__nav-list {
-    justify-content: center;
   }
 }
 

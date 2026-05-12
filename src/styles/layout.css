@@ -1112,13 +1112,15 @@ a:hover {
   }
 }
 
-/* Full-bleed promo band — below Mile High Formula / ingredients */
+/* Full-bleed promo band — above reviews; scales as one artboard (text + CTA track image) */
 .variety-pack-ad {
   position: relative;
   width: 100%;
+  margin-inline: auto;
+  container-type: inline-size;
+  container-name: variety-pack-ad;
+  /* Match /ad.webp frame; overlay uses % + cqi so headline + CTA track the art across widths */
   aspect-ratio: 2726 / 1533;
-  min-height: clamp(220px, 38vw, 560px);
-  max-height: min(78vh, 820px);
   overflow: hidden;
 }
 
@@ -1142,11 +1144,16 @@ a:hover {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding-top: max(1.35rem, calc(env(safe-area-inset-top, 0px) + 0.65rem));
-  padding-right: max(1rem, env(safe-area-inset-right, 0px));
-  padding-bottom: max(1.35rem, calc(env(safe-area-inset-bottom, 0px) + 0.65rem));
-  padding-left: max(1rem, env(safe-area-inset-left, 0px));
+  padding-top: max(3.5%, env(safe-area-inset-top, 0px));
+  padding-right: max(3%, env(safe-area-inset-right, 0px));
+  padding-bottom: max(4.5%, env(safe-area-inset-bottom, 0px));
+  padding-left: max(3%, env(safe-area-inset-left, 0px));
   background: transparent;
+  pointer-events: none;
+}
+
+.variety-pack-ad__overlay a {
+  pointer-events: auto;
 }
 
 .variety-pack-ad__inner {
@@ -1157,20 +1164,23 @@ a:hover {
   align-items: center;
   min-height: 0;
   width: 100%;
+  max-width: none;
+  margin: 0;
   text-align: center;
 }
 
 .variety-pack-ad__title {
   margin: 0;
-  max-width: none;
+  max-width: 100%;
   width: 100%;
-  padding-inline: 0.25rem;
+  padding-inline: 2%;
   box-sizing: border-box;
   font-family: var(--font-headline);
-  font-size: clamp(0.92rem, 3.35vw, 2.65rem);
+  /* One line: scale type with banner width (~36 ≈ chars + tracking for this headline) */
+  font-size: clamp(0.42rem, calc(100cqi / 38), 2.35rem);
   font-weight: 800;
   letter-spacing: 0.03em;
-  line-height: 1;
+  line-height: 1.05;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1180,17 +1190,15 @@ a:hover {
 
 .variety-pack-ad__cta {
   flex-shrink: 0;
-  padding: 0.55rem 1.5rem;
-  font-size: 0.72rem;
+  padding: clamp(0.35rem, 1.6cqi, 0.55rem) clamp(0.85rem, 4.2cqi, 1.6rem);
+  font-size: clamp(0.55rem, 2.9cqi, 0.82rem);
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-@media (max-width: 639px) {
-  .variety-pack-ad__cta {
-    padding: 0.42rem 1.15rem;
-    font-size: 0.62rem;
-    letter-spacing: 0.11em;
+@container variety-pack-ad (max-width: 380px) {
+  .variety-pack-ad__title {
+    letter-spacing: 0.02em;
   }
 }

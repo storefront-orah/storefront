@@ -102,7 +102,7 @@
   border-radius: 12px;
   border: 1px solid var(--pdp-border);
   overflow: hidden;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
 }
 
 .product-pdp__stage img {

@@ -42,21 +42,40 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     { label: 'Free shipping + 30% off all subscriptions', icon: 'package' },
   ];
 
-  readonly galleryThumbUrls = [
-    '/product-pdp-hero.png',
-    '/energy-moves-products.png',
-    '/hero-bg.png',
-    '/energy-moves-products.png',
-    '/product-pdp-hero.png',
-    '/hero-bg.png',
-  ];
+  /** PDP step 1 — energy / focus / stack (drives flavor + product gallery) */
+  readonly pdpEffect = signal<'energy' | 'focus' | 'stack'>('energy');
+
+  private static readonly galleryEnergyUrls: readonly string[] = Array.from(
+    { length: 6 },
+    (_, i) => `/pics/product/energy/${i + 1}.webp`,
+  );
+
+  private static readonly galleryFocusUrls: readonly string[] = Array.from(
+    { length: 7 },
+    (_, i) => `/pics/product/focus/${i + 1}.webp`,
+  );
+
+  /** PDP gallery thumbs: Energy, Focus, or Stack (both sets) */
+  readonly galleryThumbUrls = computed(() => {
+    switch (this.pdpEffect()) {
+      case 'energy':
+        return [...HomeComponent.galleryEnergyUrls];
+      case 'focus':
+        return [...HomeComponent.galleryFocusUrls];
+      case 'stack':
+        return [...HomeComponent.galleryEnergyUrls, ...HomeComponent.galleryFocusUrls];
+    }
+  });
 
   readonly activeGalleryIndex = signal(0);
 
-  readonly activeGallerySrc = computed(() => this.galleryThumbUrls[this.activeGalleryIndex()] ?? '/product-pdp-hero.png');
-
-  /** PDP step 1 — energy / focus / stack (drives flavor display) */
-  readonly pdpEffect = signal<'energy' | 'focus' | 'stack'>('energy');
+  readonly activeGallerySrc = computed(() => {
+    const urls = this.galleryThumbUrls();
+    if (!urls.length) return '/HeroImage.webp';
+    const i = this.activeGalleryIndex();
+    const clamped = Math.max(0, Math.min(i, urls.length - 1));
+    return urls[clamped] ?? '/HeroImage.webp';
+  });
 
   /** PDP step 3 — subscribe vs one-time */
   readonly purchaseMode = signal<'subscribe' | 'onetime'>('subscribe');
@@ -67,6 +86,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
   setPdpEffect(effect: 'energy' | 'focus' | 'stack'): void {
     this.pdpEffect.set(effect);
+    this.activeGalleryIndex.set(0);
   }
 
   setPurchaseMode(mode: 'subscribe' | 'onetime'): void {

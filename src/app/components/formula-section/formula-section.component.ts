@@ -25,7 +25,7 @@ export class FormulaSectionComponent {
         '50 mg, about 1 cup of coffee. Sourced naturally from tea leaves',
       foundIn: 'Green tea leaves',
       benefits: 'Sharpens concentration, fights fatigue, and pairs cleanly with L-theanine for a smoother feel.',
-      imageUrl: '/pics/coffee.webp',
+      imageUrl: '/pics/ingredients/energy/caffeine.webp',
       imageAlt: 'Roasted coffee beans',
     },
     {
@@ -33,7 +33,7 @@ export class FormulaSectionComponent {
       detail: 'Supports the production of serotonin, dopamine, and GABA.',
       foundIn: 'Green tea',
       benefits: 'Regulates mood and behavior, and reduces jitters when paired with caffeine.',
-      imageUrl: '/pics/theanini.webp',
+      imageUrl: '/pics/ingredients/energy/theanine.webp',
       imageAlt: 'Fresh green tea leaves',
     },
     {
@@ -41,7 +41,7 @@ export class FormulaSectionComponent {
       detail: 'Potent adaptogen with stress-reducing and energizing effects.',
       foundIn: 'Mushrooms',
       benefits: 'Reduces stress, modulates cortisol, improves mood.',
-      imageUrl: '/pics/b12.webp',
+      imageUrl: '/pics/ingredients/energy/b12.webp',
       imageAlt: 'Mushrooms',
     },
     {
@@ -49,7 +49,7 @@ export class FormulaSectionComponent {
       detail: 'Traditionally used adaptogenic root extract.',
       foundIn: 'Red Korean ginseng',
       benefits: 'Supports cognitive clarity and focus alongside your daily routine.',
-      imageUrl: '/pics/ginseng.png',
+      imageUrl: '/pics/ingredients/energy/ginseng.webp',
       imageAlt: 'Dried Korean red ginseng roots',
     },
   ];
@@ -62,7 +62,7 @@ export class FormulaSectionComponent {
       foundIn: 'Hericium erinaceus',
       benefits:
         'Supports calm focus and mental sharpness when you need to think clearly under pressure.',
-      imageUrl: '/pics/lionmane.webp',
+      imageUrl: '/pics/ingredients/focus/lions-mane.webp',
       imageAlt: "Lion's mane mushroom",
     },
     {
@@ -72,7 +72,7 @@ export class FormulaSectionComponent {
       foundIn: 'Lentinula edodes',
       benefits:
         'Helps reinforce immune resilience and everyday vitality as part of a balanced routine.',
-      imageUrl: '/pics/b12.webp',
+      imageUrl: '/pics/ingredients/focus/shiitake.webp',
       imageAlt: 'Shiitake mushrooms',
     },
     {
@@ -81,7 +81,7 @@ export class FormulaSectionComponent {
       foundIn: 'Grifola frondosa',
       benefits:
         'Supports steady energy and stress balance when workload and life stack up.',
-      imageUrl: '/pics/b12.webp',
+      imageUrl: '/pics/ingredients/focus/maitake.webp',
       imageAlt: 'Maitake mushroom',
     },
     {
@@ -90,7 +90,7 @@ export class FormulaSectionComponent {
       foundIn: 'Cordyceps militaris',
       benefits:
         'Supports steady output, breathing comfort, and resilient energy on long days without the wired spike.',
-      imageUrl: '/pics/b12.webp',
+      imageUrl: '/pics/ingredients/focus/cordyceps.webp',
       imageAlt: 'Cordyceps militaris',
     },
   ];
